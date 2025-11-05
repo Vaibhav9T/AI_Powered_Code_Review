@@ -1,8 +1,11 @@
 import { GoogleGenAI } from "@google/genai";
 
 const ai = new GoogleGenAI({apiKey: process.env.GOOGLE_GEMINI_KEY});
+//const model="gemini-2.5-flash";
+
 
 //const model="gemini-2.5-flash";
+
 
 // async function main() {
 //   const response = await ai.models.generateContent({
@@ -13,6 +16,7 @@ const ai = new GoogleGenAI({apiKey: process.env.GOOGLE_GEMINI_KEY});
 // }
 
 // await main();
+
 
 async function generateContent(code){
     const result = await ai.models.generateContent({
@@ -111,4 +115,15 @@ async function main() {
 }
 
 await main();
+
+
+async function generateContent(prompt){
+    const result=await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: prompt
+    });
+    return result.text;
+}
+
+export { generateContent };
 

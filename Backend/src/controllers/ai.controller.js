@@ -50,4 +50,3 @@ module.exports.getResponse = async (req, res) => {
     }
 };
 
-
