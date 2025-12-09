@@ -1,22 +1,10 @@
-import { GoogleGenAI } from "@google/genai";
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const ai = new GoogleGenAI({apiKey: process.env.GOOGLE_GEMINI_KEY});
-//const model="gemini-2.5-flash";
-
-// async function main() {
-//   const response = await ai.models.generateContent({
-//     model: "gemini-2.5-flash",
-//     contents: "Explain how AI works in a few words",
-//   });
-//   console.log(response.text);
-// }
-
-// await main();
-
-async function generateContent(code){
-    const result = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        systemInstructions: `Here’s a solid system instruction for your AI code reviewer:
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_KEY);
+const model = genAI.getGenerativeModel({
+    model: "gemini-2.5-flash",
+    systemInstruction: `
+                Here’s a solid system instruction for your AI code reviewer:
 
                 AI System Instruction: Senior Code Reviewer (7+ Years of Experience)
 
@@ -60,13 +48,8 @@ async function generateContent(code){
                     \`\`\`
 
                 🔍 Issues:
-
                 	•	❌ fetch() is asynchronous, but the function doesn’t handle promises correctly.
                 	•	❌ Missing error handling for failed API calls.
-
-                    •   ❌ fetch() is asynchronous, but the function doesn’t handle promises correctly.
-                    •   •   ❌ Missing error handling for failed API calls.
-
 
                 ✅ Recommended Fix:
 
@@ -92,10 +75,18 @@ async function generateContent(code){
 
                 Your mission is to ensure every piece of code follows high standards. Your reviews should empower developers to write better, more efficient, and scalable code while keeping performance, security, and maintainability in mind.
 
-                Would you like any adjustments based on your specific needs? 🚀 `,
-        contents: code
-    });
-    return result.text;
+                Would you like any adjustments based on your specific needs? 🚀 
+    `
+});
+
+
+async function generateContent(prompt) {
+    const result = await model.generateContent(prompt);
+
+    console.log(result.response.text())
+
+    return result.response.text();
+
 }
 
-export { generateContent };
+module.exports = generateContent    
