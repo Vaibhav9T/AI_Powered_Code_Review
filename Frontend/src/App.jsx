@@ -8,6 +8,7 @@ import "highlight.js/styles/github-dark.css";
 import axios from 'axios';
 import './App.css'
 
+
 <title>AI-Powered Code Review</title>
 function App() {
   const [count, setCount] = useState(0)
@@ -37,13 +38,25 @@ function App() {
   Happy coding! 😄👩‍💻👨‍💻
   Stickers: 🏷️ 📌 🎯
   */);`);
+
+
+function App() {
+  const [count, setCount] = useState(0)
+  const[code, setCode] = useState(`function sum(){ 
+  return 1+1;
+  }`);
+
 const [review, setReview] = useState(``)
   useEffect(() => {
     prism.highlightAll();
   });
 
   async function reviewCode(){
+
+
     const response= await axios.post('https://ai-powered-code-review-5fz0.onrender.com/ai/get-review',{ code })
+
+
     console.log(response.data);
     setReview(response.data);
   }
@@ -70,7 +83,9 @@ const [review, setReview] = useState(``)
               }}
             />
           </div>
+
           <div onClick={() => setCode('')} className="clear">Clear</div>
+
           <div
             className="review"
             onClick={loading ? undefined : async () => {
@@ -95,5 +110,5 @@ const [review, setReview] = useState(``)
     </>
   )
 }
-
-export default App
+}
+export default App;

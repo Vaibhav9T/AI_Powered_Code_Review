@@ -40,7 +40,7 @@ main .left{
   margin: 0;
   border-radius: 0.7rem;
   background-color: #000000;
-  overflow: auto;
+
 }
 
 
@@ -72,6 +72,7 @@ main .right{
   background-color: #1E1E1E;
   padding: 1rem 2rem;
   overflow: auto;
+
 }
 
 @media (max-width: 768px) {
@@ -113,4 +114,5 @@ main .right{
   main .right {
     padding: 0.75rem 1rem;
   }
+
 }
