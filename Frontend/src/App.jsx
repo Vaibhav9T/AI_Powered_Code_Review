@@ -25,6 +25,11 @@ function App() {
     setReview(response.data)
   }
 
+  function clearCode() {
+    setCode(``)
+    setReview(``)
+  }
+
   return (
     <>
       <main>
@@ -45,9 +50,13 @@ function App() {
               }}
             />
           </div>
+          
           <div
             onClick={reviewCode}
             className="review">Review</div>
+          <div
+            onClick={clearCode}
+            className="clear">Clear</div>
         </div>
         <div className="right">
           <Markdown

@@ -54,6 +54,19 @@ main .left .review {
   border-radius: 0.7rem;
 }
 
+main .left .clear {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background-color: rgb(219, 219, 255);
+  color: #000000;
+  padding: 0.5rem 2rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 0.7rem;
+}
+
 
 main .right {
   background-color: #343434;
@@ -61,4 +74,15 @@ main .right {
   font-size: 1.5rem;
   overflow: auto;
 
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+  main .left,
+  main .right {
+    flex-basis: auto;
+    height: 50%;
+  }
 }
